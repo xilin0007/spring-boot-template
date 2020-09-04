@@ -1,0 +1,81 @@
+server:
+  port: 8886
+spring:
+  application:
+    name: admin-server
+#  mail:
+#    host: smtp.qq.com
+#    username: xxx@qq.com
+#    password: xxx
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          from: xxx@qq.com
+#          to: xxxx@qq.com
+# http://codecentric.github.io/spring-boot-admin/1.5.6/#mail-notifications
+
+  boot:
+    admin:
+      monitor:
+        #检查实例状态的时间间隔，默认10000
+        status-interval: 10000
+        #终身身份。只要最后一个状态没有过期，该状态就不会更新，默认10000
+        status-lifetime: 10000
+        #检查实例信息的时间间隔，默认1分钟
+        #info-interval: 1
+        #信息生命周期。只要最后一个信息没有过期，该信息就不会更新，默认1分钟
+        #info-lifetime: 1
+        #查询应用程序的状态和信息时的连接超时时间，默认2000
+        connect-timeout: 2000
+        #查询应用程序的状态和信息时的读取超时时间，默认10000
+        read-timeout: 10000
+        #失败请求的默认重试次数。Modyfing请求（PUT，POST，PATCH，DELETE）将永远不会重试。
+        default-retries: 0
+      ui:
+        #admin服务端管理页面展示的loge，默认<img src="assets/img/icon-spring-boot-admin.svg"><span>Spring Boot Admin</span>
+        brand: <img src="assets/img/icon-spring-boot-admin.svg"><span>Spring Boot Admin</span>
+        title: Spring Boot Admin
+        favicon: assets/img/favicon.png
+        favicon-danger: assets/img/favicon-danger.png
+
+  security:
+    user:
+      #访问admin所需的用户名及密码
+      name: nykj
+      password: 123456
+
+# 展示 health 详情
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  # 暴露所有endpoints（方便 Spring Boot Admin 展示）
+  endpoints:
+    web:
+      exposure.include: "*"
+
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      #defaultZone: http://192.168.10.72:8761/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+    instanceId: ${spring.cloud.client.ip-address}:${server.port}
+    metadata-map:
+      startup: ${random.int}    #needed to trigger info and endpoint update after restart
+      #必须加上，否则admin界面部分功能菜单加载不全（因为不带上鉴权信息的话地址无法曝露出去）
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}

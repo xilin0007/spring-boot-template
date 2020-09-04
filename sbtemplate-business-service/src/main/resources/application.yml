@@ -1,0 +1,47 @@
+server:
+  port: 8892
+#  servlet:
+#    context-path: /hsmallpg-order
+#  port: ${random.int[10000,19999]}
+spring:
+  application:
+    name: sbtemplate-business
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.1.10.89:3306/hsmallpg?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8&allowMultiQueries=true
+    username: hsmallpg
+    password: hsmallpg
+  jackson:
+    #null的字段不返回给前端
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+    #返回给前端的date类型格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.10.72:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instanceId: ${spring.cloud.client.ip-address}:${server.port}
+
+
+#mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+mybatis-plus:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: NONE
+      column-like: true
+      db-type: mysql
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  level:
+     com.fxl.sbtemplate.businessservice : debug

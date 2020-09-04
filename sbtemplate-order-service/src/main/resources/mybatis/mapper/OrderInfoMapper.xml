@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fxl.sbtemplate.orderservice.mapper.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.fxl.sbtemplate.orderservice.model.OrderInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="dep_id" property="depId" jdbcType="VARCHAR" />
+    <result column="dep_name" property="depName" jdbcType="VARCHAR" />
+    <result column="exame_fee" property="exameFee" jdbcType="DOUBLE" />
+    <result column="guahao_amt" property="guahaoAmt" jdbcType="DOUBLE" />
+    <result column="to_date" property="toDate" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="his_take_no" property="hisTakeNo" jdbcType="VARCHAR" />
+    <result column="pay_state" property="payState" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="reservation_status" property="reservationStatus" jdbcType="TINYINT" />
+    <result column="sign_status" property="signStatus" jdbcType="TINYINT" />
+    <result column="examine_pay_status" property="examinePayStatus" jdbcType="TINYINT" />
+    <result column="examine_status" property="examineStatus" jdbcType="TINYINT" />
+    <result column="report_status" property="reportStatus" jdbcType="TINYINT" />
+    <result column="outpatient_pay_status" property="outpatientPayStatus" jdbcType="TINYINT" />
+    <result column="medicine_status" property="medicineStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, unit_id, order_no, user_id, phone, member_id, true_name, doctor_id, doctor_name, dep_id,
+    dep_name, exame_fee, guahao_amt, to_date, begin_time, end_time, his_take_no, pay_state, 
+    create_time, reservation_status, sign_status, examine_pay_status, examine_status, 
+    report_status, outpatient_pay_status, medicine_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fxl.sbtemplate.orderservice.model.OrderInfo" >
+    insert into order_info (id, unit_id, order_no, user_id,
+      phone, member_id, true_name, 
+      doctor_id, doctor_name, dep_id, 
+      dep_name, exame_fee, guahao_amt, 
+      to_date, begin_time, end_time, 
+      his_take_no, pay_state, create_time, 
+      reservation_status, sign_status, examine_pay_status, 
+      examine_status, report_status, outpatient_pay_status, 
+      medicine_status)
+    values (#{id,jdbcType=BIGINT}, #{unitId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
+      #{doctorId,jdbcType=VARCHAR}, #{doctorName,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR}, 
+      #{depName,jdbcType=VARCHAR}, #{exameFee,jdbcType=DOUBLE}, #{guahaoAmt,jdbcType=DOUBLE}, 
+      #{toDate,jdbcType=VARCHAR}, #{beginTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{hisTakeNo,jdbcType=VARCHAR}, #{payState,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{reservationStatus,jdbcType=TINYINT}, #{signStatus,jdbcType=TINYINT}, #{examinePayStatus,jdbcType=TINYINT}, 
+      #{examineStatus,jdbcType=TINYINT}, #{reportStatus,jdbcType=TINYINT}, #{outpatientPayStatus,jdbcType=TINYINT}, 
+      #{medicineStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxl.sbtemplate.orderservice.model.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="depId != null" >
+        dep_id,
+      </if>
+      <if test="depName != null" >
+        dep_name,
+      </if>
+      <if test="exameFee != null" >
+        exame_fee,
+      </if>
+      <if test="guahaoAmt != null" >
+        guahao_amt,
+      </if>
+      <if test="toDate != null" >
+        to_date,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="hisTakeNo != null" >
+        his_take_no,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="reservationStatus != null" >
+        reservation_status,
+      </if>
+      <if test="signStatus != null" >
+        sign_status,
+      </if>
+      <if test="examinePayStatus != null" >
+        examine_pay_status,
+      </if>
+      <if test="examineStatus != null" >
+        examine_status,
+      </if>
+      <if test="reportStatus != null" >
+        report_status,
+      </if>
+      <if test="outpatientPayStatus != null" >
+        outpatient_pay_status,
+      </if>
+      <if test="medicineStatus != null" >
+        medicine_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null" >
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="exameFee != null" >
+        #{exameFee,jdbcType=DOUBLE},
+      </if>
+      <if test="guahaoAmt != null" >
+        #{guahaoAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="toDate != null" >
+        #{toDate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hisTakeNo != null" >
+        #{hisTakeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationStatus != null" >
+        #{reservationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="signStatus != null" >
+        #{signStatus,jdbcType=TINYINT},
+      </if>
+      <if test="examinePayStatus != null" >
+        #{examinePayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="examineStatus != null" >
+        #{examineStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reportStatus != null" >
+        #{reportStatus,jdbcType=TINYINT},
+      </if>
+      <if test="outpatientPayStatus != null" >
+        #{outpatientPayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="medicineStatus != null" >
+        #{medicineStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.fxl.sbtemplate.orderservice.model.OrderInfo" >
+    update order_info
+    set
+      unit_id = #{unitId,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=VARCHAR},
+      dep_name = #{depName,jdbcType=VARCHAR},
+      exame_fee = #{exameFee,jdbcType=DOUBLE},
+      guahao_amt = #{guahaoAmt,jdbcType=DOUBLE},
+      to_date = #{toDate,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      his_take_no = #{hisTakeNo,jdbcType=VARCHAR},
+      pay_state = #{payState,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      reservation_status = #{reservationStatus,jdbcType=TINYINT},
+      sign_status = #{signStatus,jdbcType=TINYINT},
+      examine_pay_status = #{examinePayStatus,jdbcType=TINYINT},
+      examine_status = #{examineStatus,jdbcType=TINYINT},
+      report_status = #{reportStatus,jdbcType=TINYINT},
+      outpatient_pay_status = #{outpatientPayStatus,jdbcType=TINYINT},
+      medicine_status = #{medicineStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 通过订单号更新 -->
+  <update id="updateByOrderNo" parameterType="com.fxl.sbtemplate.orderservice.model.OrderInfo" >
+    update order_info
+    <set>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null" >
+        dep_id = #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="exameFee != null" >
+        exame_fee = #{exameFee,jdbcType=DOUBLE},
+      </if>
+      <if test="guahaoAmt != null" >
+        guahao_amt = #{guahaoAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="toDate != null" >
+        to_date = #{toDate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hisTakeNo != null" >
+        his_take_no = #{hisTakeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationStatus != null" >
+        reservation_status = #{reservationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="signStatus != null" >
+        sign_status = #{signStatus,jdbcType=TINYINT},
+      </if>
+      <if test="examinePayStatus != null" >
+        examine_pay_status = #{examinePayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="examineStatus != null" >
+        examine_status = #{examineStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reportStatus != null" >
+        report_status = #{reportStatus,jdbcType=TINYINT},
+      </if>
+      <if test="outpatientPayStatus != null" >
+        outpatient_pay_status = #{outpatientPayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="medicineStatus != null" >
+        medicine_status = #{medicineStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_no = #{orderNo}
+  </update>
+
+  <!-- 通过memberId查询订单 -->
+  <select id="listOrderByMemb" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    id, order_no
+    from order_info
+    where member_id = #{memberId}
+  </select>
+
+  <!-- 批量添加 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into order_info
+    (
+    id, unit_id, order_no, user_id, phone, member_id, true_name, doctor_id, doctor_name, dep_id,
+    dep_name, exame_fee, guahao_amt, to_date, begin_time, end_time, his_take_no, pay_state,
+    create_time, reservation_status, sign_status, examine_pay_status, examine_status,
+    report_status, outpatient_pay_status, medicine_status
+    )
+    values
+    <foreach collection="list" item="obj" separator=",">
+      (
+      #{obj.id,jdbcType=BIGINT}, #{obj.unitId,jdbcType=VARCHAR}, #{obj.orderNo,jdbcType=VARCHAR}, #{obj.userId,jdbcType=VARCHAR},
+      #{obj.phone,jdbcType=VARCHAR}, #{obj.memberId,jdbcType=VARCHAR}, #{obj.trueName,jdbcType=VARCHAR},
+      #{obj.doctorId,jdbcType=VARCHAR}, #{obj.doctorName,jdbcType=VARCHAR}, #{obj.depId,jdbcType=VARCHAR},
+      #{obj.depName,jdbcType=VARCHAR}, #{obj.exameFee,jdbcType=DOUBLE}, #{obj.guahaoAmt,jdbcType=DOUBLE},
+      #{obj.toDate,jdbcType=VARCHAR}, #{obj.beginTime,jdbcType=VARCHAR}, #{obj.endTime,jdbcType=VARCHAR},
+      #{obj.hisTakeNo,jdbcType=VARCHAR}, #{obj.payState,jdbcType=VARCHAR}, #{obj.createTime,jdbcType=TIMESTAMP},
+      0, 0, 0, 0, 0, 0, 0
+      )
+    </foreach>
+  </insert>
+
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="obj" separator=";">
+      update order_info
+      <set>
+        <if test="obj.unitId != null">
+          unit_id = #{obj.unitId,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.orderNo != null" >
+          order_no = #{obj.orderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.userId != null" >
+          user_id = #{obj.userId,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.phone != null" >
+          phone = #{obj.phone,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.memberId != null" >
+          member_id = #{obj.memberId,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.trueName != null" >
+          true_name = #{obj.trueName,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.doctorId != null" >
+          doctor_id = #{obj.doctorId,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.doctorName != null" >
+          doctor_name = #{obj.doctorName,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.depId != null" >
+          dep_id = #{obj.depId,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.depName != null" >
+          dep_name = #{obj.depName,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.exameFee != null" >
+          exame_fee = #{obj.exameFee,jdbcType=DOUBLE},
+        </if>
+        <if test="obj.guahaoAmt != null" >
+          guahao_amt = #{obj.guahaoAmt,jdbcType=DOUBLE},
+        </if>
+        <if test="obj.toDate != null" >
+          to_date = #{obj.toDate,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.beginTime != null" >
+          begin_time = #{obj.beginTime,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.endTime != null" >
+          end_time = #{obj.endTime,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.hisTakeNo != null" >
+          his_take_no = #{obj.hisTakeNo,jdbcType=VARCHAR},
+        </if>
+        <if test="obj.payState != null" >
+          pay_state = #{obj.payState,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where id = #{obj.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+
+  <!-- 查询订单就诊指引状态 -->
+  <select id="getOrderStatus" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    order_no, reservation_status, sign_status, examine_pay_status, examine_status,
+    report_status, outpatient_pay_status, medicine_status
+    from order_info
+    where order_no = #{orderNo}
+  </select>
+
+  <!-- 批量更新订单状态 -->
+  <update id="updateStatusBatch" parameterType="java.util.List">
+    <foreach collection="list" item="obj" separator=";">
+      update order_info
+      <set>
+        <if test="obj.reservationStatus != null" >
+          reservation_status = #{obj.reservationStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.signStatus != null" >
+          sign_status = #{obj.signStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.examinePayStatus != null" >
+          examine_pay_status = #{obj.examinePayStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.examineStatus != null" >
+          examine_status = #{obj.examineStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.reportStatus != null" >
+          report_status = #{obj.reportStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.outpatientPayStatus != null" >
+          outpatient_pay_status = #{obj.outpatientPayStatus,jdbcType=TINYINT},
+        </if>
+        <if test="obj.medicineStatus != null" >
+          medicine_status = #{obj.medicineStatus,jdbcType=TINYINT},
+        </if>
+      </set>
+      <where>
+        <if test="obj.orderNo != null">
+          order_no = #{obj.orderNo}
+        </if>
+        <if test="obj.unitId != null">
+          and unit_id = #{obj.unitId}
+        </if>
+        <if test="obj.userId != null">
+          and user_id = #{obj.userId}
+        </if>
+        <if test="obj.memberId != null">
+          and member_id = #{obj.memberId}
+        </if>
+      </where>
+    </foreach>
+  </update>
+
+</mapper>

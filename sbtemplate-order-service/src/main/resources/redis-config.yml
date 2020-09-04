@@ -1,0 +1,5 @@
+redis:
+  address: 192.168.10.2:26379,192.168.10.145:26379,192.168.10.146:26379
+  masterNameValue: mymaster
+  passwordValue: 12345678
+  dbIndexValue: 11
